@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Core Module Imports (Mapped to your true local path directory structure)
+# Core Module Imports
 from services.ai import ask_mwalimu, generate_quiz, generate_study_plan, generate_flashcards, generate_lesson
 from services.database import (
     create_tables,
@@ -30,12 +30,12 @@ from services.database import (
     clear_student_chat_history
 )
 from voice_page import render_voice_tutor_page
-from config import CBC # Dynamic CBC repository dictionary
+from config import CBC  # Dynamic CBC repository dictionary
 
 # Initialize Database Architecture
 create_tables()
 
-# --- INITIALIZE STATE FROM DATABASE & INPUT WORKSPACE ---
+# --- INITIALIZE STATE WORKSPACE ---
 if "current_page" not in st.session_state:
     st.session_state.current_page = "Main Chat"
 if "quiz_questions" not in st.session_state:
@@ -56,20 +56,16 @@ if "flashcards" not in st.session_state:
     st.session_state.flashcards = []
 if "lesson_content" not in st.session_state:
     st.session_state.lesson_content = None
+
+# ADD THIS LINE HERE TO FIX THE VOICE TUTOR BUG:
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Initialize client using the environment variable configuration setup
-@st.cache_resource
-def get_backend_client():
-    return os.environ.get("OPENROUTER_API_KEY")
-client = get_backend_client()
-
-# --- BASE64 SIDEBAR IMAGE INJECTOR ---
+#--- BASE64 SIDEBAR IMAGE INJECTOR
 try:
     with open("assets/logo211.png", "rb") as image_file:
         encoded_logo = base64.b64encode(image_file.read()).decode()
-    sidebar_bg_style = f"background-image: url('data:image/png;base64, {encoded_logo}') !important;"
+        sidebar_bg_style = f"background-image: url('data:image/png;base64,{encoded_logo}') !important;"
 except Exception:
     sidebar_bg_style = ""
 
@@ -92,7 +88,6 @@ st.html(f"""
 padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; margin-bottom: 0rem !important; min-height: 80px !important;
 {sidebar_bg_style} background-size: contain !important; background-repeat: no-repeat !important; background-position: left center !important; margin-left: 55px !important;
 }}
-/* --- ATTRACTIVE GLOBAL BUTTON HOVER OVERRIDES --- */
 div.stButton > button {{
 transition: all 0.2s ease-in-out !important;
 }}
@@ -104,15 +99,12 @@ box-shadow: 0 2px 8px rgba(30, 58, 138, 0.1) !important;
 </style>
 """)
 
-# ==========================================
-# 🎯 CLEANED SIDEBAR CONFIGURATION
-# ==========================================
-# (Removed duplicate header titles here — Logo will render directly at the top of the sidebar panel)
+# === SIDEBAR ACCOUNT CONFIGURATION ===
 raw_name = st.sidebar.text_input("Student Name", value=st.session_state.get("student_name") or "")
 name = raw_name.strip().title() if raw_name else ""
 grade = st.sidebar.selectbox("Grade", [
     "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6",
-    "Grade 7", "Grade 8", "Form 1", "Form 2", "Form 3", "Form 4"
+    "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"
 ], index=0)
 age = st.sidebar.number_input("Age", min_value=5, max_value=25, value=10)
 favorite_subject = st.sidebar.text_input("Favorite Subject", value=st.session_state.get("favorite_subject") or "")
@@ -120,30 +112,56 @@ weak_subject = st.sidebar.text_input("Weak Subject", value=st.session_state.get(
 learning_style = st.sidebar.selectbox("Learning Style", ["Visual", "Practical", "Reading/Writing", "Interactive", "Story-based"])
 language = st.sidebar.selectbox("Preferred Language", ["English", "Kiswahili", "Sheng"])
 
+# Composite state verification logic to load specific student thread context safely
 if name:
+    if (st.session_state.get("last_checked_name") != name or 
+        st.session_state.get("last_checked_grade") != grade or 
+        st.session_state.get("last_checked_age") != int(age)):
+        
+        st.session_state.messages = get_chat_history(name, grade, int(age))
+        st.session_state.last_checked_name = name
+        st.session_state.last_checked_grade = grade
+        st.session_state.last_checked_age = int(age)
     st.session_state.student_name = name
-    try:
-        historical_chats = get_chat_history(name, grade, int(age))
-        if historical_chats and not st.session_state.chat_history:
-            st.session_state.chat_history = historical_chats
-    except Exception as db_err:
-        print(f"Database restoration skipped on initialization: {db_err}")
 
 # CBC CURRICULUM INTEGRATION SELECTORS
 st.sidebar.markdown("---")
-st.sidebar.subheader("📚 Curriculum Context")
+st.sidebar.subheader(" Curriculum Context")
 
-subjects = list(CBC.get(grade, {}).keys()) or ["General Studies"]
-subject = st.sidebar.selectbox("Subject", subjects)
+# 1. Safely pull Grade dictionary
+grade_dict = CBC.get(grade, {})
+if not isinstance(grade_dict, dict):
+    grade_dict = {}
 
-topics = list(CBC.get(grade, {}).get(subject, {}).keys()) or ["General Topic"]
-topic = st.sidebar.selectbox("Topic", topics)
+subjects = list(grade_dict.keys()) or ["General Studies"]
+# Added unique key
+subject = st.sidebar.selectbox("Subject", subjects, key="sidebar_subject_select")
 
-sub_topics = list(CBC.get(grade, {}).get(subject, {}).get(topic, {}).keys()) or ["General Sub-Topic"]
-sub_topic = st.sidebar.selectbox("Sub-topic", sub_topics)
+# 2. Safely pull Subject dictionary
+subject_dict = grade_dict.get(subject, {})
+if not isinstance(subject_dict, dict):
+    subject_dict = {}
 
-outcomes = CBC.get(grade, {}).get(subject, {}).get(topic, {}).get(sub_topic, []) or ["General Learning Outcome"]
-learning_outcome = st.sidebar.selectbox("Learning Outcome", outcomes)
+topics = list(subject_dict.keys()) or ["General Topic"]
+# Added unique key
+topic = st.sidebar.selectbox("Topic", topics, key="sidebar_topic_select")
+
+# 3. Handle structure split gracefully (3-level vs 4-level deep data layouts)
+inner_data = subject_dict.get(topic, {})
+
+if isinstance(inner_data, dict):
+    sub_topics = list(inner_data.keys()) or ["General Sub-Topic"]
+    # Added unique key for dictionary branch
+    sub_topic = st.sidebar.selectbox("Sub-topic", sub_topics, key="sidebar_subtopic_dict_select")
+    outcomes = inner_data.get(sub_topic, []) or ["General Learning Outcome"]
+else:
+    # Added unique key for list branch
+    sub_topic = st.sidebar.selectbox("Sub-topic", ["General Sub-Topic"], key="sidebar_subtopic_list_select")
+    outcomes = inner_data if isinstance(inner_data, (list, tuple)) else ["General Learning Outcome"]
+
+# 4. Enforce strict unique key for outcomes selectbox
+raw_outcome = st.sidebar.selectbox("Learning Outcome", outcomes, key="sidebar_outcome_select")
+learning_outcome = str(raw_outcome) if raw_outcome else "General Learning Outcome"
 
 # Assemble Complete Multi-Dimensional Student Object Map
 student = {
@@ -160,47 +178,45 @@ student = {
     "learning_outcome": learning_outcome
 }
 
-# --- ACTIVE PROFILE CARD ---
+#--- ACTIVE PROFILE CARD
 st.sidebar.markdown("---")
-st.sidebar.subheader("👤 Active Profile")
+st.sidebar.subheader(" Active Profile")
 if name:
     st.sidebar.info(f"**Student:** {name} \n\n**{grade}** | **Age:** {age}")
 else:
     st.sidebar.warning("Please type your Student Name at the top of the sidebar.")
 
-# --- NAVIGATION HUB ---
-st.sidebar.subheader("🚀 Navigation Hub")
-if st.sidebar.button("Voice Tutor Mode", use_container_width=True):
+# NAVIGATION HUB
+st.sidebar.subheader(" Navigation Hub")
+if st.sidebar.button("🎙️Voice Tutor Mode", use_container_width=True):
     st.session_state.current_page = "Voice Tutor"
     st.rerun()
 
-if st.sidebar.button("🗑️Clear Chat",):
-    if name and name.strip() != "":
+if st.sidebar.button("🗑️Clear Chat"):
+    if name:
         try:
             clear_student_chat_history(name, grade, int(age))
         except Exception as e:
             print(f"Error clearing database chat logs: {e}")
-    st.session_state.messages = []
-    st.session_state.chat_history = []
-    st.session_state.quiz = None
-    st.session_state.quiz_submitted = False
-    st.session_state.quiz_score = 0
-    st.session_state.quiz_raw_score = 0
-    st.session_state.flashcards = []
-    st.session_state.lesson_content = None
-    st.rerun()
+        st.session_state.messages = []
+        st.session_state.quiz = None
+        st.session_state.quiz_submitted = False
+        st.session_state.quiz_score = 0
+        st.session_state.quiz_raw_score = 0
+        st.session_state.flashcards = []
+        st.session_state.lesson_content = None
+        st.rerun()
 
-# --- SIDEBAR PROGRESS DASHBOARD GENERATION ---
+#--- SIDEBAR PROGRESS DASHBOARD GENERATION
 st.sidebar.markdown("---")
-st.sidebar.subheader("📊 Progress Dashboard")
+st.sidebar.subheader(" Progress Dashboard")
 if name:
-    stats = get_student_stats(name, grade, age)
+    stats = get_student_stats(name, grade, int(age))
     st.sidebar.metric("Questions Asked", stats.get("questions", 0))
     st.sidebar.metric(label="Quizzes Taken", value=stats["quizzes"])
     st.sidebar.metric("Average Score", f"{stats.get('average_score', 0)}%")
     
-    stats = get_student_stats(name, grade, int(age))
-    analysis = get_student_learning_analysis(name, grade, age)
+    analysis = get_student_learning_analysis(name, grade, int(age))
     st.sidebar.markdown(f"**Learning Status:** `{analysis.get('current_level', 'Medium')}`")
     
     if analysis.get('weak_topics'):
@@ -213,17 +229,14 @@ if name:
         for t in analysis['strong_topics']:
             st.sidebar.caption(f"✅ {t}")
             
-    history_scores = get_student_quiz_history(name, grade, age)
+    history_scores = get_student_quiz_history(name, grade, int(age))
     if len(history_scores) > 0:
         st.sidebar.markdown("**Performance Trend**")
         st.sidebar.line_chart(history_scores)
 else:
     st.sidebar.caption("Fill in your name to start tracking parameters.")
 
-
-# ==========================================
-# 🧙‍♂️ MAIN BRANDING HEADER CONTAINER
-# ==========================================
+# MAIN BRANDING HEADER CONTAINER
 col1, col2 = st.columns([1, 5], vertical_alignment="center")
 with col1:
     try:
@@ -234,35 +247,33 @@ with col1:
 with col2:
     st.markdown("<h1 style='margin-top: 0 !important; margin-bottom: 0 !important; padding: 0;'>Mwalimu AI App</h1>", unsafe_allow_html=True)
     st.markdown("<h4 style='margin-top: 2px !important; margin-bottom: 0 !important; color: gray; font-weight: normal;'>Shaping Minds, Shifting Futures.</h4>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-bottom: 15px;'></div>", unsafe_allow_html=True)
 
-st.markdown("<div style='margin-bottom: 15px;'></div>", unsafe_allow_html=True)
-st.write("Welcome to Mwalimu AI! 🇰🇪 I am your friendly, adaptive Kenyan AI teacher. To begin, create your student profile in the sidebar to sync your learning. From there, you can ask me any school question, explore real-time interactive lessons, challenge yourself with 5-question targeted quizzes, or launch into Voice Tutor Mode for an immersive audio learning experience tailored precisely to your grade, learning style, and topic tracking!")
+st.write("Welcome to Mwalimu AI! I am your friendly, adaptive Kenyan AI teacher. To begin, create your student profile in the sidebar to sync your learning. From there, you can ask me any school question, explore real-time interactive lessons, challenge yourself with 5-question targeted quizzes, or launch into Voice Tutor Mode for an immersive audio learning experience tailored precisely to your grade, learning style, and topic tracking!")
 
 # DISPLAY ACTIVE CBC TARGET TRACKER BOX AT TOP OF PAGE
 if name:
     st.markdown(
         f"""
         <div style="background-color: #1e293b; border-left: 5px solid #3b82f6; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-        <span style="color: #3b82f6; font-weight: bold;">Active Curriculum Targeting:</span>
-        <span style="color: #f8fafc;">Grade {grade} &bull; Subject: {subject} &bull; Topic: {topic} &bull; Sub-topic: {sub_topic}</span>
+        <span style="color: #3b82f6; font-weight: bold;">🎯Active Curriculum Targeting:</span>
+        <span style="color: #f8fafc;">Grade: {grade} &bull; Subject: {subject} &bull; Topic: {topic} &bull; Sub-topic: {sub_topic}</span>
         <br>
-        <span style="color: #94a3b8; font-weight: bold;">Target Learning Outcome:</span> 
+        <span style="color: #94a3b8; font-weight: bold;">Target Learning Outcome:</span>
         <span style="color: #f8fafc;">{learning_outcome}</span>
         </div>
-        """, 
+        """,
         unsafe_allow_html=True
     )
 
-# =======================================================
 # PAGE VIEW MODE 1: MAIN CHAT DASHBOARD
-# =======================================================
 if st.session_state.current_page == "Main Chat":
     st.markdown("---")
     if st.button("Go to Quizzes, Flashcards & Lessons Generators", use_container_width=True):
         st.session_state.current_page = "Generators Hub"
         st.rerun()
-    
-    # --- AI STUDY PLAN SECTION
+        
+    #--- AI STUDY PLAN SECTION
     st.markdown("---")
     st.subheader("AI Personalized Study Plan")
     if st.button("Generate Today's Study Plan", use_container_width=True):
@@ -273,19 +284,19 @@ if st.session_state.current_page == "Main Chat":
                 stats = get_student_stats(name, grade, int(age))
                 st.session_state.study_plan = generate_study_plan(student, stats)
                 st.rerun()
-    
+                
     if st.session_state.study_plan:
         st.info("Tip: Follow the allocated time intervals for maximum focus today!")
         st.markdown(st.session_state.study_plan)
         if st.button("Clear Study Plan"):
             st.session_state.study_plan = None
             st.rerun()
-
-    # --- CHAT WITH MWALIMU SECTION
+            
+    #--- CHAT WITH MWALIMU SECTION
     st.markdown("---")
     st.write("### Chat with Mwalimu")
     
-    for msg in st.session_state.chat_history:
+    for msg in st.session_state.messages:
         role_label = "user" if msg["role"] in ["student", "user"] else "assistant"
         with st.chat_message(role_label):
             st.write(msg["content"])
@@ -294,27 +305,11 @@ if st.session_state.current_page == "Main Chat":
         if not name:
             st.warning("Please create Student Profile in the sidebar first!")
         else:
-            st.session_state.chat_history.append({"role": "student", "content": user_question})
+            st.session_state.messages.append({"role": "student", "content": user_question})
             save_chat_message(name, grade, int(age), "student", user_question)
-            
-            try:
-                save_activity(
-                    student_name=name, 
-                    student_grade=grade, 
-                    student_age=int(age), 
-                    activity_type="chat", 
-                    topic=topic, 
-                    score=0, 
-                    subject=subject, 
-                    sub_topic=sub_topic,
-                    learning_outcome=learning_outcome
-                )
-            except Exception as db_err:
-                print(f"Database logging background error: {db_err}")
-            
+                
             stats = get_student_stats(name, grade, int(age))
             analysis = get_student_learning_analysis(name, grade, int(age))
-            
             adaptive_context = f"""
             Current Mastery Level: {analysis.get('current_level', 'Medium')}
             Average Quiz Score: {stats.get('average_score', 0)}%
@@ -325,24 +320,23 @@ if st.session_state.current_page == "Main Chat":
             with st.spinner("Mwalimu is thinking..."):
                 try:
                     response = ask_mwalimu(
-                        question=user_question, student=student,
-                        messages=st.session_state.chat_history[:-1], adaptive_context=adaptive_context
+                        question=user_question, 
+                        student=student,
+                        messages=st.session_state.messages[:-1], 
+                        adaptive_context=adaptive_context
                     )
                     if not response:
                         response = "Mambo! I received an empty response. Let's try asking that again."
                 except Exception as e:
                     response = f"Mwalimu configuration error: {str(e)}"
-            
-            response = response.replace("User Safety: safe", "").strip()
-            response = response.replace("User Safety:safe", "").strip()
-            
-            st.session_state.chat_history.append({"role": "assistant", "content": response})
+                response = response.replace("User Safety: safe", "").strip()
+                response = response.replace("User Safety:safe", "").strip()
+                
+            st.session_state.messages.append({"role": "assistant", "content": response})
             save_chat_message(name, grade, int(age), "assistant", response)
             st.rerun()
 
-# =======================================================
 # PAGE VIEW MODE 2: VOICE TUTOR DASHBOARD MODE
-# =======================================================
 elif st.session_state.current_page == "Voice Tutor":
     st.markdown("---")
     if st.button("Back to Main Chat Dashboard", use_container_width=True, key="back_from_voice"):
@@ -351,11 +345,16 @@ elif st.session_state.current_page == "Voice Tutor":
     if not name:
         st.warning("Please enter your name in the Student Profile registration section to unlock the Voice Tutor engine.")
     else:
-        render_voice_tutor_page(client)
+        # Check if environment setup exists for Client passing
+        api_key = os.environ.get("OPENROUTER_API_KEY") or st.secrets.get("OPENROUTER_API_KEY")
+        if api_key:
+            from openai import OpenAI
+            client_gate = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=api_key)
+            render_voice_tutor_page(client_gate)
+        else:
+            st.error("OpenRouter Gateway API configurations are currently offline.")
 
-# =======================================================
 # PAGE VIEW MODE 3: GENERATORS WORKSPACE HUB
-# =======================================================
 elif st.session_state.current_page == "Generators Hub":
     st.markdown("---")
     if st.button("Go back to Main Chat Dashboard", use_container_width=True, key="back_from_generators"):
@@ -364,13 +363,15 @@ elif st.session_state.current_page == "Generators Hub":
     st.markdown("---")
     
     tab1, tab2, tab3 = st.tabs(["Quiz Generator Engine", "AI Flashcards Maker", "AI Lessons Generator"])
-    
     with tab1:
         st.subheader("Quiz Generator")
-        quiz_topic = st.text_input("Quiz Topic", placeholder="Defaults to current dynamic Sub topic selection", value=sub_topic, key="workspace_quiz_topic")
+        
+        # Guard topic string assignment safely
+        raw_quiz_input = st.text_input("Quiz Topic", placeholder="Defaults to current dynamic Sub topic selection", value=sub_topic, key="workspace_quiz_topic")
+        quiz_topic: str = raw_quiz_input.strip() if raw_quiz_input else ""
         
         if st.button("Generate Quiz", use_container_width=True):
-            if not quiz_topic.strip():
+            if not quiz_topic:
                 st.warning("Please enter a quiz topic.")
             elif not name:
                 st.warning("Please create Student Profile in the sidebar first!")
@@ -381,21 +382,20 @@ elif st.session_state.current_page == "Generators Hub":
                     st.session_state.quiz_submitted = False
                     st.session_state.quiz_score = 0
                     st.session_state.quiz_raw_score = 0
-                
-                save_activity(
-                    student_name=name, 
-                    student_grade=grade, 
-                    student_age=int(age),
-                    activity_type="quiz_generation", 
-                    topic=quiz_topic, 
-                    score=0,
-                    subject=subject,
-                    topics=topic, 
-                    sub_topic=sub_topic, 
-                    learning_outcome=learning_outcome
-                )
-                st.rerun()
-        
+                    save_activity(
+                        student_name=name,
+                        student_grade=grade,
+                        student_age=int(age),
+                        activity_type="quiz_generation",
+                        topic=quiz_topic,
+                        score=0,
+                        subject=subject if subject else "General",
+                        topics=topic if topic else "General",
+                        sub_topic=sub_topic if sub_topic else "General",
+                        learning_outcome=learning_outcome if learning_outcome else "General"
+                    )
+                    st.rerun()
+                    
         if st.session_state.quiz:
             st.markdown("### Generated Quiz")
             for i, question in enumerate(st.session_state.quiz):
@@ -422,13 +422,15 @@ elif st.session_state.current_page == "Generators Hub":
                         st.session_state.quiz_submitted = True
                         save_activity(
                             student_name=name, student_grade=grade, student_age=int(age),
-                            activity_type="quiz_score", topic=quiz_topic, 
+                            activity_type="quiz_score", topic=quiz_topic,
                             score=st.session_state.quiz_score,
-                            subject=subject, topics=topic, sub_topic=sub_topic, 
-                            learning_outcome=learning_outcome
+                            subject=subject if subject else "General", 
+                            topics=topic if topic else "General", 
+                            sub_topic=sub_topic if sub_topic else "General",
+                            learning_outcome=learning_outcome if learning_outcome else "General"
                         )
                         st.rerun()
-            
+                        
             if st.session_state.quiz_submitted:
                 raw_score = st.session_state.quiz_raw_score
                 total_questions = len(st.session_state.quiz)
@@ -451,12 +453,15 @@ elif st.session_state.current_page == "Generators Hub":
                     st.session_state.quiz_score = 0
                     st.session_state.quiz_raw_score = 0
                     st.rerun()
-
+                    
     with tab2:
         st.subheader("AI Flashcards Maker")
-        flashcard_topic = st.text_input("Enter a topic for your flashcards:", value=sub_topic, key="fc_topic")
+        # Ensure input string extraction can never evaluate as NoneType
+        raw_fc_input = st.text_input("Enter a topic for your flashcards:", value=sub_topic, key="fc_topic")
+        flashcard_topic: str = raw_fc_input.strip() if raw_fc_input else ""
+        
         if st.button("Generate Flashcards", use_container_width=True):
-            if flashcard_topic.strip() == "":
+            if not flashcard_topic:
                 st.warning("Please enter a valid topic first!")
             elif not name:
                 st.warning("Please create Student Profile in the sidebar first!")
@@ -476,12 +481,15 @@ elif st.session_state.current_page == "Generators Hub":
             if st.button("Clear Flashcards", use_container_width=True):
                 st.session_state.flashcards = []
                 st.rerun()
-
+                
     with tab3:
         st.subheader("AI Lessons Generator")
-        lesson_topic = st.text_input("Enter the topic you want to learn today:", value=learning_outcome, key="lesson_topic_input")
+        # Protect lesson text input string binding variables
+        raw_lesson_input = st.text_input("Enter the topic you want to learn today:", value=learning_outcome, key="lesson_topic_input")
+        lesson_topic: str = raw_lesson_input.strip() if raw_lesson_input else ""
+        
         if st.button("Generate Lesson", use_container_width=True):
-            if lesson_topic.strip() == "":
+            if not lesson_topic:
                 st.warning("Please enter a valid lesson topic first!")
             elif not name:
                 st.warning("Please create Student Profile in the sidebar first!")
@@ -492,42 +500,48 @@ elif st.session_state.current_page == "Generators Hub":
                         save_activity(
                             student_name=name, student_grade=grade, student_age=int(age),
                             activity_type="lesson", topic=lesson_topic, score=0,
-                            subject=subject, topics=topic, sub_topic=sub_topic, 
-                            learning_outcome=learning_outcome
+                            subject=subject if subject else "General", 
+                            topics=topic if topic else "General", 
+                            sub_topic=sub_topic if sub_topic else "General",
+                            learning_outcome=learning_outcome if learning_outcome else "General"
                         )
                     except Exception as e:
                         st.error(f"Failed to generate lesson: {str(e)}")
                     st.rerun()
-        
+                    
         if "lesson_content" in st.session_state and st.session_state.lesson_content:
             st.markdown("---")
             st.info("Tip: Read through the breakdown below. Mwalimu customized this explanation precisely for your style!")
-            lesson_text = st.session_state.lesson_content
-            if isinstance(lesson_text, str):
-                if lesson_text.startswith("```markdown"):
-                    lesson_text = lesson_text.replace("```markdown", "", 1).rstrip("```")
-                elif lesson_text.startswith("```"):
-                    lesson_text = lesson_text.strip("```")
-                st.markdown(lesson_text)
+            
+            raw_lesson = st.session_state.lesson_content
+            if raw_lesson and isinstance(raw_lesson, str):
+                safe_lesson: str = raw_lesson
+                
+                if safe_lesson.startswith("```markdown"):
+                    safe_lesson = safe_lesson.replace("```markdown", "", 1).rstrip("```")
+                elif safe_lesson.startswith("```"):
+                    safe_lesson = safe_lesson.strip("```")
+                st.markdown(safe_lesson)
             else:
-                st.write(lesson_text)
+                st.write(raw_lesson)
+                
             if st.button("Clear Lesson Content", use_container_width=True):
                 st.session_state.lesson_content = None
                 st.rerun()
 
-# --- FOOTER BRANDING TAGS ---
+#--- FOOTER LOGO RENDERING
 logo_html_tag = ""
 logo_path = "assets/logo112.png"
 if os.path.exists(logo_path):
     with open(logo_path, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
-    logo_html_tag = f'<img src="data:image/png;base64, {b64}" width="20" style="vertical-align: middle; margin-right: 8px;">'
+    logo_html_tag = f'<img src="data:image/png;base64,{b64}" width="20" style="vertical-align: middle; margin-right: 8px;">'
 
 st.markdown(
     f"""
     <hr style='margin-top: 50px; border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0));'>
     <p style='color: gray; font-size: 0.85rem; display: flex; align-items: center; justify-content: center;'>
-    {logo_html_tag} Mwalimu AI App Version 0.7 | CBC Curriculum Engine | © 2026 Copyright
+    {logo_html_tag} Mwalimu AI App Version 1.0 | CBC Curriculum Engine | © 2026 Copyright
     </p>
     """,
     unsafe_allow_html=True
