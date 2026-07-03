@@ -46,8 +46,8 @@ Language: {student.get("language", "English")}
 
 === ACTIVE CBC CURRICULUM CONTEXT ===
 Subject: {student.get("subject", "General")}
-Strand: {student.get("strand", "General")}
-Sub-strand: {student.get("sub_strand", "General")}
+Topic: {student.get("topic", "General")}
+Sub-topic: {student.get("sub_topic", "General")}
 Learning Outcome Target: {student.get("learning_outcome", "General")}
 
 === ADAPTIVE LEARNING ANALYSIS ===
@@ -181,8 +181,8 @@ Preferred Language: {preferred_language}
 
 === ACTIVE CBC CURRICULUM CONTEXT ===
 Subject: {student.get("subject", "General")}
-Strand: {student.get("strand", "General")}
-Sub-strand: {student.get("sub_strand", "General")}
+Topic: {student.get("topic", "General")}
+Sub-topic: {student.get("sub_topic", "General")}
 Learning Outcome Target: {student.get("learning_outcome", "General")}
 
 Student Statistics
@@ -239,8 +239,8 @@ Language: {student.get("language", "English")}
 
 === ACTIVE CBC CURRICULUM CONTEXT ===
 Subject: {student.get("subject", "General")}
-Strand: {student.get("strand", "General")}
-Sub-strand: {student.get("sub_strand", "General")}
+Topic: {student.get("topic", "General")}
+Sub-topic: {student.get("sub_topic", "General")}
 Learning Outcome Target: {student.get("learning_outcome", "General")}
 
 Create exactly 10 revision flashcards about: {topic}
@@ -256,8 +256,8 @@ Format:
 
 === ACTIVE CBC CURRICULUM CONTEXT ===
 Subject: {student.get("subject", "General")}
-Strand: {student.get("strand", "General")}
-Sub-strand: {student.get("sub_strand", "General")}
+Topic: {student.get("topic", "General")}
+Sub-topic: {student.get("sub_topic", "General")}
 Learning Outcome Target: {student.get("learning_outcome", "General")}
 
 Rules:
@@ -312,8 +312,8 @@ LESSON TARGET:
 
 === ACTIVE CBC CURRICULUM CONTEXT ===
 Subject: {student.get("subject", "General")}
-Strand: {student.get("strand", "General")}
-Sub-strand: {student.get("sub_strand", "General")}
+Topic: {student.get("topic", "General")}
+Sub-topic: {student.get("sub_topic", "General")}
 Learning Outcome Target: {student.get("learning_outcome", "General")}
 
 Please construct the lesson using clean Markdown headers. The lesson MUST include the following 9 numbered sections in order:

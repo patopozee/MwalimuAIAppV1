@@ -529,7 +529,7 @@ elif st.session_state.current_page == "Generators Hub":
                 st.session_state.lesson_content = None
                 st.rerun()
 
-#--- FOOTER LOGO RENDERING
+#--- FOOTER LOGO RENDERING WITH PERMANENT CENTERED BOTTOM FIX
 logo_html_tag = ""
 logo_path = "assets/logo112.png"
 if os.path.exists(logo_path):
@@ -539,10 +539,31 @@ if os.path.exists(logo_path):
 
 st.markdown(
     f"""
-    <hr style='margin-top: 50px; border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0));'>
-    <p style='color: gray; font-size: 0.85rem; display: flex; align-items: center; justify-content: center;'>
-    {logo_html_tag} Mwalimu AI App Version 1.0 | CBC Curriculum Engine | © 2026 Copyright
-    </p>
+    <style>
+    /* Fixed container locking your custom footer layout directly at the viewport bottom */
+    .sticky-footer-container {{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #0e1117; /* Standard Streamlit dark theme backdrop */
+        z-index: 999;
+        padding-bottom: 15px;
+        text-align: center;       /* Centers inline elements inside the container */
+    }}
+    
+    /* Global layout padding adjustment: prevents app blocks from hiding behind the sticky container when fully scrolled */
+    .main .block-container {{
+        padding-bottom: 90px !important;
+    }}
+    </style>
+
+    <div class="sticky-footer-container">
+        <hr style='margin: 10px auto 15px auto; width: 80%; border: 0; height: 1px; background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.1), rgba(255,255,255,0));'>
+        <p style='color: gray; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; margin: 0;'>
+        {logo_html_tag} Mwalimu AI App Version 1.0 | CBC Curriculum Engine | © 2026 Copyright
+        </p>
+    </div>
     """,
     unsafe_allow_html=True
 )
