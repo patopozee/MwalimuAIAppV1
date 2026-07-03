@@ -9,6 +9,18 @@ def render_voice_tutor_page(client):
     st.title("🎙️ Mwalimu AI - Voice Tutor")
     st.write("Click the microphone below to talk with your AI Teacher. Speak clearly!")
 
+    # Track a version number to break the microphone's stubborn cache loop
+    if "voice_recorder_version" not in st.session_state:
+        st.session_state.voice_recorder_version = 0
+
+    # Persistent Pipeline State Initialization
+    if "user_spoken_text" not in st.session_state:
+        st.session_state.user_spoken_text = ""
+    if "mwalimu_response_text" not in st.session_state:
+        st.session_state.mwalimu_response_text = ""
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+
     # Extract student profile properties from session state
     name = st.session_state.get("student_name", "Student")
     grade = st.session_state.get("grade", "Grade 7")
@@ -24,36 +36,53 @@ def render_voice_tutor_page(client):
         "learning_style": learning_style, "language": language
     }
 
-    # Persistent Pipeline State
-    if "user_spoken_text" not in st.session_state:
-        st.session_state.user_spoken_text = ""
-    if "mwalimu_response_text" not in st.session_state:
-        st.session_state.mwalimu_response_text = ""
-
-    # Audio capturing processing hub button widget
+    # Dynamic version keying breaks the cache loop
     audio = mic_recorder(
         start_prompt="🎙️ Click & Start Speaking",
         stop_prompt="🛑 Stop & Send",
-        key='recorder'
+        key=f"voice_recorder_v_{st.session_state.voice_recorder_version}"  
     )
+
+    # State flag to keep track of errors across the runtime flow
+    has_error = False
 
     if audio:
         with st.spinner("Transcribing your voice..."):
             transcription = speech_to_text(audio['bytes'])
-            if transcription and transcription != st.session_state.user_spoken_text:
-                st.session_state.user_spoken_text = transcription
-                st.session_state.mwalimu_response_text = ""  # Force recalculation update
-                st.session_state.chat_history.append({"role": "user", "content": transcription})
-                save_chat_message(name, grade, age, "user", transcription)
+            
+            if transcription:
+                # ─── CRITICAL CRASH & ERROR SHIELD GUARDRAIL ───
+                error_keywords = ["failed", "402", "error", "client error", "payment required"]
+                if any(keyword in transcription.lower() for keyword in error_keywords):
+                    st.error(f"🛑 Transcription API Error: {transcription}")
+                    st.info("💡 Mwalimu Tip: Your OpenRouter audio billing credits might be empty. Please check your dashboard balance!")
+                    
+                    # Log the error state in session memory so the bottom layout knows to render
+                    if not st.session_state.chat_history:
+                        st.session_state.chat_history.append({"role": "system", "content": "error_state_active"})
+                    has_error = True
 
-    # STEP 2: Render user speech text & trigger LLM context pipelines
-    if st.session_state.user_spoken_text:
+                # If it's a valid speech string, proceed safely
+                elif transcription != st.session_state.user_spoken_text:
+                    st.session_state.user_spoken_text = transcription
+                    st.session_state.mwalimu_response_text = ""  
+                    st.session_state.chat_history.append({"role": "user", "content": transcription})
+                    save_chat_message(name, grade, age, "user", transcription)
+
+    # Check existing history to catch an active error state on page refresh
+    if any(msg.get("content") == "error_state_active" for msg in st.session_state.chat_history):
+        has_error = True
+
+    # STEP 2: Render user speech text & trigger LLM context pipelines (ONLY IF NO ERROR)
+    if st.session_state.user_spoken_text and not has_error:
         st.info(f"🗣️ **What you said:** {st.session_state.user_spoken_text}")
         
         if not st.session_state.mwalimu_response_text:
             with st.spinner("🧙‍♂️ Mwalimu is thinking..."):
                 try:
-                    adaptive_context = f"Learning Style: {learning_style}, Favorite Subject: {favorite_subject}"
+                    preferred_language = student.get("language", "English")
+                    adaptive_context = f"Learning Style: {learning_style}, Favorite Subject: {favorite_subject}, Preferred Language: {preferred_language}"
+                    
                     ai_response_text = ask_mwalimu(
                         question=st.session_state.user_spoken_text,
                         student=student,
@@ -70,6 +99,17 @@ def render_voice_tutor_page(client):
                 except Exception as e:
                     st.error(f"Mwalimu setup issue: {str(e)}")
 
-    # STEP 3: Display clean response text
-    if st.session_state.mwalimu_response_text:
+    # STEP 3: Display clean response text (ONLY IF NO ERROR)
+    if st.session_state.mwalimu_response_text and not has_error:
         st.success(f"🧙‍♂️ **Mwalimu:** {st.session_state.mwalimu_response_text}")
+
+    # ─── FIXED: THE DYNAMIC RESET BUTTON AT THE ABSOLUTE BOTTOM ───
+    # Since we removed st.stop(), the script safely runs through here even on transcription crashes!
+    if len(st.session_state.chat_history) > 0:
+        st.write("")  # Clear vertical padding spacer
+        if st.button("🧹 Clear Voice Session & Reset Cache"):
+            st.session_state.user_spoken_text = ""
+            st.session_state.mwalimu_response_text = ""
+            st.session_state.chat_history = []
+            st.session_state.voice_recorder_version += 1
+            st.rerun()

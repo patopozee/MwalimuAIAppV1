@@ -235,27 +235,537 @@ GRADE_10 = {
 },
 
         "English": {
-            "Functional Writing": {
-                "Letters & Memos": [
-                    "Draft formal letters and official business memos"
-                ]
-            }
+
+    # ======================================================
+    # LISTENING AND SPEAKING
+    # ======================================================
+
+    "Listening and Speaking": {
+
+        "Oral Communication": {
+
+            "Effective Communication": [
+                "Listen actively for comprehension and critical evaluation.",
+                "Use appropriate verbal and non-verbal communication skills.",
+                "Participate effectively in discussions, debates and presentations.",
+                "Demonstrate confidence and etiquette during oral communication."
+            ]
         },
+
+        "Public Speaking": {
+
+            "Presentation Skills": [
+                "Prepare and deliver organized oral presentations.",
+                "Use appropriate language for different audiences and purposes.",
+                "Apply persuasive speaking techniques effectively.",
+                "Evaluate personal and peer presentations constructively."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # READING
+    # ======================================================
+
+    "Reading": {
+
+        "Reading Comprehension": {
+
+            "Critical Reading": [
+                "Read a variety of literary and informational texts critically.",
+                "Identify explicit and implicit meanings in texts.",
+                "Analyze the author's purpose, tone and style.",
+                "Evaluate ideas and arguments presented in texts."
+            ]
+        },
+
+        "Extensive Reading": {
+
+            "Independent Reading": [
+                "Develop a habit of reading for information and enjoyment.",
+                "Summarize ideas from extended texts.",
+                "Evaluate themes and messages in literary works.",
+                "Appreciate reading as a lifelong learning skill."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # WRITING
+    # ======================================================
+
+    "Writing": {
+
+        "Functional Writing": {
+
+            "Practical Communication": [
+                "Write formal and informal correspondence appropriately.",
+                "Prepare reports, speeches and articles.",
+                "Use appropriate formats for workplace and academic writing.",
+                "Edit written work for clarity and accuracy."
+            ]
+        },
+
+        "Creative Writing": {
+
+            "Composition Writing": [
+                "Write imaginative and descriptive compositions.",
+                "Develop coherent narratives using appropriate techniques.",
+                "Apply correct grammar, punctuation and spelling.",
+                "Revise and improve written work through editing."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # LANGUAGE STRUCTURES
+    # ======================================================
+
+    "Language Structures": {
+
+        "Grammar in Context": {
+
+            "Language Accuracy": [
+                "Apply grammatical rules correctly in communication.",
+                "Use varied sentence structures effectively.",
+                "Apply vocabulary appropriately in different contexts.",
+                "Demonstrate accurate punctuation and spelling."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # LITERATURE IN ENGLISH
+    # ======================================================
+
+    "Literature in English": {
+
+        "Literary Appreciation": {
+
+            "Study of Literature": [
+                "Analyze prose, poetry and drama.",
+                "Identify literary devices and their effects.",
+                "Evaluate themes, characterization and style.",
+                "Relate literary works to contemporary issues."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # DIGITAL LITERACY
+    # ======================================================
+
+    "Digital Literacy": {
+
+        "Digital Communication": {
+
+            "Media and Technology": [
+                "Use digital platforms responsibly for communication.",
+                "Evaluate information from online sources critically.",
+                "Create digital presentations using appropriate tools.",
+                "Observe digital citizenship and online safety."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # RESEARCH SKILLS
+    # ======================================================
+
+    "Research Skills": {
+
+        "Language Research": {
+
+            "Information Literacy": [
+                "Identify credible sources of information.",
+                "Collect and organize information for language tasks.",
+                "Cite sources appropriately.",
+                "Prepare research reports using standard formats."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # ENGLISH PROJECT
+    # ======================================================
+
+    "English Project": {
+
+        "Integrated Language Project": {
+
+            "Communication Project": [
+                "Plan and undertake an English language project.",
+                "Apply listening, speaking, reading and writing skills collaboratively.",
+                "Present project findings effectively.",
+                "Reflect on learning and communication skills acquired."
+            ]
+        }
+
+    }
+
+},
         
         "Kiswahili": {
-            "Ufahamu": {
-                "Kusoma kwa Kina": [
-                    "Kujibu maswali ya kifungu cha habari kwa usahihi"
-                ]
-            }
+
+    # ======================================================
+    # KUSIKILIZA NA KUZUNGUMZA
+    # ======================================================
+
+    "Kusikiliza na Kuzungumza": {
+
+        "Mawasiliano ya Mdomo": {
+
+            "Stadi za Mawasiliano": [
+                "Kusikiliza kwa makini ili kupata taarifa na kuelewa ujumbe.",
+                "Kutumia lugha ya mazungumzo kwa ufasaha katika miktadha mbalimbali.",
+                "Kushiriki ipasavyo katika mijadala, majadiliano na mawasilisho.",
+                "Kutumia lugha ya heshima na adabu katika mawasiliano ya kila siku."
+            ]
         },
+
+        "Hotuba na Midahalo": {
+
+            "Uwasilishaji wa Mawazo": [
+                "Kuandaa na kutoa hotuba zenye mpangilio mzuri.",
+                "Kutumia mbinu za ushawishi katika mawasiliano.",
+                "Kujieleza kwa ufasaha mbele ya hadhira.",
+                "Kutathmini mawasilisho binafsi na ya wenzake."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # KUSOMA
+    # ======================================================
+
+    "Kusoma": {
+
+        "Ufahamu": {
+
+            "Usomaji wa Kina": [
+                "Kusoma na kuelewa matini mbalimbali.",
+                "Kubainisha mawazo makuu na mawazo saidizi.",
+                "Kutambua dhamira, mtazamo na mtindo wa mwandishi.",
+                "Kutathmini hoja na ujumbe katika matini."
+            ]
+        },
+
+        "Usomaji wa Kujitegemea": {
+
+            "Utamaduni wa Kusoma": [
+                "Kukuza utamaduni wa kusoma kwa maarifa na burudani.",
+                "Kufupisha taarifa kutoka matini ndefu.",
+                "Kuchambua ujumbe wa kazi za fasihi.",
+                "Kuthamini usomaji kama njia ya kujifunza maisha yote."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # KUANDIKA
+    # ======================================================
+
+    "Kuandika": {
+
+        "Uandishi wa Kawaida": {
+
+            "Mawasiliano ya Kimaandishi": [
+                "Kuandika barua rasmi na zisizo rasmi kwa usahihi.",
+                "Kuandika ripoti, makala na hotuba.",
+                "Kutumia miundo sahihi ya uandishi katika miktadha mbalimbali.",
+                "Kuhariri maandishi ili kuboresha ubora wake."
+            ]
+        },
+
+        "Uandishi wa Kibunifu": {
+
+            "Utungaji": [
+                "Kuandika insha za ubunifu na maelezo.",
+                "Kutumia mbinu mbalimbali za uandishi wa kisanaa.",
+                "Kutumia sarufi, tahajia na uakifishaji kwa usahihi.",
+                "Kurekebisha na kuboresha maandishi kupitia uhariri."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # SARUFI
+    # ======================================================
+
+    "Sarufi": {
+
+        "Matumizi ya Lugha": {
+
+            "Miundo ya Kiswahili": [
+                "Kutumia kanuni za sarufi katika mawasiliano.",
+                "Kutumia msamiati ufaao kulingana na muktadha.",
+                "Kutunga sentensi sahihi na zenye mtiririko mzuri.",
+                "Kutumia tahajia na alama za uandishi kwa usahihi."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # FASIHI
+    # ======================================================
+
+    "Fasihi": {
+
+        "Fasihi ya Kiswahili": {
+
+            "Uchanganuzi wa Fasihi": [
+                "Kuchambua kazi za riwaya, tamthilia na ushairi.",
+                "Kutambua tamathali za usemi na mbinu za kifasihi.",
+                "Kuchanganua wahusika, maudhui na migogoro.",
+                "Kuhusisha kazi za fasihi na maisha ya kila siku."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # TEKNOLOJIA YA KIDIJITALI
+    # ======================================================
+
+    "Teknolojia ya Kidijitali": {
+
+        "Mawasiliano ya Kidijitali": {
+
+            "Matumizi ya TEHAMA": [
+                "Kutumia majukwaa ya kidijitali kwa mawasiliano salama.",
+                "Kutathmini taarifa kutoka vyanzo vya mtandaoni.",
+                "Kuandaa mawasilisho kwa kutumia teknolojia.",
+                "Kuzingatia maadili ya matumizi ya teknolojia."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # UTAFITI
+    # ======================================================
+
+    "Utafiti": {
+
+        "Stadi za Utafiti": {
+
+            "Ukusanyaji wa Taarifa": [
+                "Kutambua vyanzo vya kuaminika vya taarifa.",
+                "Kukusanya na kupanga taarifa kwa kazi za lugha.",
+                "Kunukuu vyanzo kwa usahihi.",
+                "Kuandika ripoti za utafiti kwa mpangilio unaofaa."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # MRADI WA KISWAHILI
+    # ======================================================
+
+    "Mradi wa Kiswahili": {
+
+        "Mradi Shirikishi": {
+
+            "Matumizi ya Lugha": [
+                "Kupanga na kutekeleza mradi wa Kiswahili kwa kushirikiana.",
+                "Kutumia stadi za kusikiliza, kuzungumza, kusoma na kuandika katika mradi.",
+                "Kuwasilisha matokeo ya mradi kwa ufasaha.",
+                "Kutafakari kuhusu maarifa na stadi zilizopatikana kupitia mradi."
+            ]
+        }
+
+    }
+
+},
         "Geography": {
-            "Internal Land-forming Processes": {
-                "Faulting": [
-                    "Explain features resulting from faulting processes"
-                ]
-            }
+
+    # ======================================================
+    # PHYSICAL GEOGRAPHY
+    # ======================================================
+
+    "Physical Geography": {
+
+        "The Earth and Landforms": {
+
+            "Earth Processes": [
+                "Explain the structure and composition of the Earth.",
+                "Analyze internal and external processes that shape landforms.",
+                "Describe the formation and characteristics of major landforms.",
+                "Appreciate the importance of landforms in human activities."
+            ]
         },
+
+        "Weather and Climate": {
+
+            "Atmospheric Processes": [
+                "Explain the elements of weather and climate.",
+                "Interpret weather maps and climatic data.",
+                "Analyze factors influencing climate.",
+                "Assess the effects of weather and climate on human activities."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # HUMAN GEOGRAPHY
+    # ======================================================
+
+    "Human Geography": {
+
+        "Population Geography": {
+
+            "Population Studies": [
+                "Analyze population distribution and density.",
+                "Explain factors influencing population growth and migration.",
+                "Assess the impact of population changes on development.",
+                "Suggest sustainable population management strategies."
+            ]
+        },
+
+        "Settlement and Urbanization": {
+
+            "Human Settlements": [
+                "Differentiate between rural and urban settlements.",
+                "Explain factors influencing settlement patterns.",
+                "Assess challenges associated with urbanization.",
+                "Propose sustainable settlement planning strategies."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # ENVIRONMENTAL GEOGRAPHY
+    # ======================================================
+
+    "Environmental Geography": {
+
+        "Environment and Resources": {
+
+            "Natural Resource Management": [
+                "Identify major natural resources and their distribution.",
+                "Assess the importance of sustainable resource utilization.",
+                "Analyze causes and effects of environmental degradation.",
+                "Recommend environmental conservation measures."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # PRACTICAL GEOGRAPHY
+    # ======================================================
+
+    "Practical Geography": {
+
+        "Map Work": {
+
+            "Topographical Maps": [
+                "Interpret topographical maps using conventional symbols.",
+                "Calculate distance, direction, gradient and area from maps.",
+                "Determine grid references and map coordinates accurately.",
+                "Apply map interpretation skills to solve geographical problems."
+            ]
+        },
+
+        "Photograph Interpretation": {
+
+            "Geographical Images": [
+                "Interpret ground, aerial and satellite photographs.",
+                "Identify physical and human features from photographs.",
+                "Relate photograph evidence to geographical concepts.",
+                "Draw geographical conclusions from photographic evidence."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # GEOSPATIAL TECHNOLOGY
+    # ======================================================
+
+    "Geospatial Technology": {
+
+        "Geographic Information Systems": {
+
+            "GIS Applications": [
+                "Explain the concept and importance of Geographic Information Systems (GIS).",
+                "Identify applications of GIS in solving geographical problems.",
+                "Use digital maps and basic GIS tools appropriately.",
+                "Appreciate technology in geographical investigations."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # FIELDWORK
+    # ======================================================
+
+    "Fieldwork": {
+
+        "Geographical Investigation": {
+
+            "Field Study": [
+                "Plan and conduct geographical fieldwork.",
+                "Collect geographical data using appropriate methods.",
+                "Record, analyze and interpret field data accurately.",
+                "Prepare and present fieldwork reports."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # GEOGRAPHICAL STATISTICS
+    # ======================================================
+
+    "Geographical Statistics": {
+
+        "Data Analysis": {
+
+            "Statistical Techniques": [
+                "Collect geographical data using appropriate sampling techniques.",
+                "Present geographical data using tables, graphs and charts.",
+                "Interpret statistical information accurately.",
+                "Draw valid conclusions from geographical data."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # RESEARCH PROJECT
+    # ======================================================
+
+    "Research Project": {
+
+        "Geographical Inquiry": {
+
+            "Applied Research": [
+                "Identify a geographical problem within the local environment.",
+                "Conduct research using appropriate geographical methods.",
+                "Develop practical solutions based on research findings.",
+                "Present research findings using professional geographical reports."
+            ]
+        }
+
+    }
+
+},
         "Physics": {
 
     # ======================================================
@@ -1175,28 +1685,1155 @@ GRADE_10 = {
 
 },
         "Business Studies": {
-            "Forms of Business Units": {
-                "Sole Proprietorships": [
-                    "Analyze characteristics, advantages, and disadvantages of sole traders"
-                ]
-            }
-        },
-        "History and Government": {
-            "Early History": {
-                "Migration & Settlement": [
-                    "Trace migration patterns of Kenyan communities up to the 19th Century"
-                ]
-            }
-        },
-        "CRE": {
-            "Old Testament Leadership": {
-                "Moses": [
-                    "Explain the call and role of Moses in Israel's journey"
-                ]
-            }
+
+    # ======================================================
+    # FOUNDATION OF BUSINESS STUDIES
+    # ======================================================
+
+    "Foundation of Business Studies": {
+
+        "Introduction to Business": {
+
+            "Nature of Business": [
+                "Explain the meaning and importance of Business Studies.",
+                "Describe the characteristics of business activities.",
+                "Differentiate between economic and non-economic activities.",
+                "Appreciate the role of business in improving quality of life."
+            ]
         },
 
-        "Technical Studies": {
+        "Business Activities": {
+
+            "Classification of Business": [
+                "Classify business activities into production, trade and services.",
+                "Explain the interdependence of business activities.",
+                "Identify examples of business activities within the community.",
+                "Demonstrate appreciation for entrepreneurship."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # BUSINESS AND ITS ENVIRONMENT
+    # ======================================================
+
+    "Business and Its Environment": {
+
+        "Business Environment": {
+
+            "Business Operations": [
+                "Explain internal and external business environments.",
+                "Assess factors affecting business success.",
+                "Analyze the relationship between businesses and society.",
+                "Promote ethical business practices."
+            ]
+        },
+
+        "Entrepreneurship": {
+
+            "Enterprise Development": [
+                "Explain the qualities of successful entrepreneurs.",
+                "Identify business opportunities within the community.",
+                "Develop simple business ideas to solve community needs.",
+                "Appreciate entrepreneurship as a career pathway."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # GOVERNMENT AND GLOBAL INFLUENCE
+    # ======================================================
+
+    "Government and Global Influence in Business": {
+
+        "Government and Business": {
+
+            "Public Policy": [
+                "Explain the role of government in business regulation.",
+                "Describe government policies that promote business growth.",
+                "Analyze the impact of taxation on business activities.",
+                "Appreciate the importance of complying with business laws."
+            ]
+        },
+
+        "International Business": {
+
+            "Global Trade": [
+                "Explain the concept of international trade.",
+                "Identify the benefits and challenges of international trade.",
+                "Describe the role of regional economic organizations.",
+                "Appreciate the importance of global markets."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # FINANCIAL RECORDS
+    # ======================================================
+
+    "Financial Records in Business": {
+
+        "Business Records": {
+
+            "Financial Documentation": [
+                "Identify common financial documents used in business.",
+                "Prepare basic business financial records accurately.",
+                "Explain the importance of proper record keeping.",
+                "Apply ethical principles when handling business records."
+            ]
+        },
+
+        "Cash Management": {
+
+            "Cash Records": [
+                "Prepare simple cash records.",
+                "Differentiate between receipts and payments.",
+                "Maintain accurate financial records.",
+                "Appreciate financial accountability in business."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # BUSINESS COMMUNICATION
+    # ======================================================
+
+    "Business Communication": {
+
+        "Communication Skills": {
+
+            "Business Correspondence": [
+                "Use appropriate communication methods in business.",
+                "Prepare simple business letters and reports.",
+                "Apply effective communication skills when interacting with customers.",
+                "Demonstrate professionalism in business communication."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # DIGITAL BUSINESS
+    # ======================================================
+
+    "Digital Business": {
+
+        "Technology in Business": {
+
+            "E-Business": [
+                "Explain the role of ICT in modern business.",
+                "Identify digital tools used in business operations.",
+                "Apply safe and responsible digital business practices.",
+                "Appreciate the contribution of technology to business growth."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # FINANCIAL LITERACY
+    # ======================================================
+
+    "Financial Literacy": {
+
+        "Personal Finance": {
+
+            "Money Management": [
+                "Prepare simple personal budgets.",
+                "Explain the importance of saving and investment.",
+                "Differentiate between needs and wants in financial planning.",
+                "Demonstrate responsible financial decision-making."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # BUSINESS PROJECT
+    # ======================================================
+
+    "Business Project": {
+
+        "Entrepreneurship Project": {
+
+            "Business Investigation": [
+                "Identify a business opportunity within the local community.",
+                "Collect and analyze business information using appropriate methods.",
+                "Develop a simple business proposal.",
+                "Present business findings using appropriate communication skills."
+            ]
+        }
+
+    }
+
+},
+        "Social Studies": {
+
+    # ======================================================
+    # INTRODUCTION TO HISTORY AND CITIZENSHIP
+    # ======================================================
+
+    "Introduction to History and Citizenship": {
+
+        "Historical Inquiry": {
+
+            "History as a Discipline": [
+                "Explain the meaning and importance of History and Citizenship.",
+                "Identify sources of historical information.",
+                "Apply historical inquiry skills in investigating past events.",
+                "Appreciate the relevance of history in contemporary society."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # PEOPLE, HERITAGE AND CIVILIZATION
+    # ======================================================
+
+    "People, Heritage and Civilization": {
+
+        "Human Development": {
+
+            "Civilizations": [
+                "Describe the development of early civilizations.",
+                "Analyze contributions of ancient civilizations to modern society.",
+                "Appreciate cultural diversity and heritage.",
+                "Promote preservation of historical heritage."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # KENYA'S HISTORICAL DEVELOPMENT
+    # ======================================================
+
+    "Kenya's Historical Development": {
+
+        "Pre-Colonial Kenya": {
+
+            "Communities in Kenya": [
+                "Describe the social, political and economic organization of Kenyan communities.",
+                "Analyze interactions among Kenyan communities before colonialism.",
+                "Assess the impact of trade on community development.",
+                "Appreciate Kenya's cultural diversity."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # GOVERNANCE
+    # ======================================================
+
+    "Governance": {
+
+        "Constitution and Government": {
+
+            "Democratic Governance": [
+                "Explain the principles of constitutional democracy.",
+                "Describe the structure and functions of the Government of Kenya.",
+                "Explain the importance of the Constitution in governance.",
+                "Promote responsible citizenship."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # HUMAN RIGHTS
+    # ======================================================
+
+    "Human Rights": {
+
+        "Rights and Responsibilities": {
+
+            "Citizenship": [
+                "Explain fundamental human rights and freedoms.",
+                "Identify responsibilities of citizens.",
+                "Promote equality, justice and human dignity.",
+                "Demonstrate respect for the rule of law."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # PEACE AND CONFLICT RESOLUTION
+    # ======================================================
+
+    "Peace and Conflict Resolution": {
+
+        "Peace Building": {
+
+            "Conflict Management": [
+                "Identify causes of conflict in society.",
+                "Apply peaceful conflict resolution strategies.",
+                "Promote national unity and social cohesion.",
+                "Appreciate peaceful coexistence among communities."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # LEADERSHIP AND INTEGRITY
+    # ======================================================
+
+    "Leadership and Integrity": {
+
+        "Ethical Leadership": {
+
+            "Leadership Skills": [
+                "Explain qualities of effective leadership.",
+                "Analyze the importance of integrity in leadership.",
+                "Demonstrate ethical decision-making skills.",
+                "Promote accountability and transparency."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # GLOBAL CITIZENSHIP
+    # ======================================================
+
+    "Global Citizenship": {
+
+        "International Relations": {
+
+            "Global Cooperation": [
+                "Explain Kenya's role in regional and international organizations.",
+                "Analyze the importance of international cooperation.",
+                "Promote responsible global citizenship.",
+                "Appreciate cultural diversity in the global community."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # RESEARCH PROJECT
+    # ======================================================
+
+    "Research Project": {
+
+        "Historical Investigation": {
+
+            "Community Research": [
+                "Identify a historical or civic issue within the local community.",
+                "Collect and analyze information using appropriate research methods.",
+                "Develop evidence-based conclusions from research findings.",
+                "Present research findings using appropriate oral and written communication."
+            ]
+        }
+
+    }
+
+},
+        "Religious Education": {
+    "Christian Religious Education": {
+
+    # ======================================================
+    # THE BIBLE
+    # ======================================================
+
+    "The Bible": {
+
+        "The Word of God": {
+
+            "Biblical Foundations": [
+                "Explain the origin, structure and significance of the Bible.",
+                "Interpret selected biblical passages in their context.",
+                "Apply biblical teachings to everyday life.",
+                "Appreciate the Bible as a guide for Christian living."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # GOD'S PLAN FOR HUMANITY
+    # ======================================================
+
+    "God's Plan for Humanity": {
+
+        "Creation and Human Responsibility": {
+
+            "Creation": [
+                "Explain the biblical accounts of creation.",
+                "Analyze humanity's responsibility as stewards of God's creation.",
+                "Demonstrate responsible environmental stewardship.",
+                "Appreciate the dignity and value of human life."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # THE LIFE AND TEACHINGS OF JESUS CHRIST
+    # ======================================================
+
+    "The Life and Teachings of Jesus Christ": {
+
+        "Ministry of Jesus": {
+
+            "Teachings of Christ": [
+                "Describe significant events in the life of Jesus Christ.",
+                "Analyze the teachings and miracles of Jesus.",
+                "Apply the teachings of Jesus in daily life.",
+                "Model Christian values demonstrated by Jesus."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # THE CHURCH
+    # ======================================================
+
+    "The Church": {
+
+        "Christian Community": {
+
+            "Mission of the Church": [
+                "Explain the origin and mission of the Christian Church.",
+                "Describe the role of the Church in society.",
+                "Participate responsibly in community service activities.",
+                "Promote unity among Christians."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # CHRISTIAN VALUES
+    # ======================================================
+
+    "Christian Values": {
+
+        "Moral Living": {
+
+            "Ethical Behaviour": [
+                "Explain Christian values and virtues.",
+                "Apply biblical principles in making moral decisions.",
+                "Demonstrate honesty, integrity and accountability.",
+                "Promote justice, peace and respect for others."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # CHRISTIAN LIVING
+    # ======================================================
+
+    "Christian Living": {
+
+        "Faith in Action": {
+
+            "Daily Christian Life": [
+                "Demonstrate responsible Christian living.",
+                "Apply Christian teachings in relationships.",
+                "Respond appropriately to contemporary social issues from a Christian perspective.",
+                "Develop personal spiritual growth through prayer and worship."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # LEADERSHIP AND SERVICE
+    # ======================================================
+
+    "Leadership and Service": {
+
+        "Servant Leadership": {
+
+            "Christian Leadership": [
+                "Explain biblical principles of servant leadership.",
+                "Demonstrate leadership skills in school and community.",
+                "Participate in community service initiatives.",
+                "Promote responsible citizenship through Christian values."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # PEACE AND SOCIAL RESPONSIBILITY
+    # ======================================================
+
+    "Peace and Social Responsibility": {
+
+        "Peace Building": {
+
+            "Conflict Resolution": [
+                "Identify causes of conflict in society.",
+                "Apply Christian principles of reconciliation and forgiveness.",
+                "Promote peaceful coexistence among diverse communities.",
+                "Demonstrate social responsibility through community engagement."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # RESEARCH PROJECT
+    # ======================================================
+
+    "Research Project": {
+
+        "Christian Inquiry": {
+
+            "Faith and Society": [
+                "Investigate a contemporary moral or social issue from a Christian perspective.",
+                "Collect and analyze information using appropriate research methods.",
+                "Develop practical recommendations based on biblical teachings.",
+                "Present research findings using appropriate communication skills."
+            ]
+        }
+
+    }
+    
+    },
+    "Islamic Religious Education (IRE)": {
+
+    # ======================================================
+    # THE HOLY QUR'AN
+    # ======================================================
+
+    "The Holy Qur'an": {
+
+        "Qur'anic Studies": {
+
+            "Recitation and Understanding": [
+                "Recite selected Qur'anic verses observing the rules of Tajwid.",
+                "Explain the meanings and teachings of selected Qur'anic passages.",
+                "Apply Qur'anic teachings in daily life.",
+                "Appreciate the Qur'an as the primary source of Islamic guidance."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # HADITH
+    # ======================================================
+
+    "Hadith": {
+
+        "Prophetic Traditions": {
+
+            "Teachings of Prophet Muhammad (SAW)": [
+                "Explain the importance of Hadith in Islam.",
+                "Interpret selected Hadith and their relevance to contemporary life.",
+                "Apply the teachings of Hadith in personal conduct.",
+                "Appreciate the Sunnah as a source of Islamic guidance."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # TAWHID
+    # ======================================================
+
+    "Tawhid": {
+
+        "Islamic Creed": {
+
+            "Belief in Allah": [
+                "Explain the concept of Tawhid.",
+                "Describe the attributes of Allah (SWT).",
+                "Demonstrate faith through obedience and worship.",
+                "Appreciate the significance of Tawhid in a Muslim's life."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # FIQH
+    # ======================================================
+
+    "Fiqh": {
+
+        "Acts of Worship": {
+
+            "Islamic Practices": [
+                "Explain the significance of the pillars of Islam.",
+                "Perform acts of worship according to Islamic teachings.",
+                "Apply Islamic rulings in everyday situations.",
+                "Demonstrate commitment to Islamic worship."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # SIRAH
+    # ======================================================
+
+    "Sirah": {
+
+        "Life of Prophet Muhammad (SAW)": {
+
+            "Prophetic Biography": [
+                "Describe key events in the life of Prophet Muhammad (SAW).",
+                "Analyze the leadership qualities of the Prophet.",
+                "Apply lessons from the Prophet's life to modern society.",
+                "Emulate the noble character of the Prophet."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # AKHLAQ
+    # ======================================================
+
+    "Akhlaq": {
+
+        "Islamic Morality": {
+
+            "Character Development": [
+                "Demonstrate Islamic values in daily interactions.",
+                "Promote honesty, justice, compassion and respect.",
+                "Apply Islamic ethics in decision-making.",
+                "Develop responsible citizenship guided by Islamic morals."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # ISLAMIC CIVILIZATION
+    # ======================================================
+
+    "Islamic Civilization": {
+
+        "Islamic Heritage": {
+
+            "Muslim Contributions": [
+                "Describe the development of Islamic civilization.",
+                "Analyze the contributions of Muslim scholars to humanity.",
+                "Appreciate Islamic cultural heritage.",
+                "Promote preservation of Islamic values and heritage."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # CONTEMPORARY ISSUES
+    # ======================================================
+
+    "Contemporary Issues": {
+
+        "Islam and Modern Society": {
+
+            "Current Challenges": [
+                "Analyze contemporary social issues from an Islamic perspective.",
+                "Apply Islamic teachings in addressing modern challenges.",
+                "Promote peaceful coexistence and social responsibility.",
+                "Demonstrate ethical use of technology and media."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # RESEARCH PROJECT
+    # ======================================================
+
+    "Research Project": {
+
+        "Islamic Inquiry": {
+
+            "Faith and Society": [
+                "Investigate a contemporary issue affecting the Muslim community.",
+                "Collect and analyze information using appropriate research methods.",
+                "Develop practical recommendations based on Islamic teachings.",
+                "Present research findings using effective oral and written communication."
+            ]
+        }
+
+    }
+    },
+    "Hindu Religious Education (HRE)": {
+
+    # ======================================================
+    # MANIFESTATION OF PARAMATMA
+    # ======================================================
+
+    "Manifestation of Paramatma": {
+
+        "Understanding the Supreme Being": {
+
+            "Nature of Paramatma": [
+                "Explain the concept of Paramatma in Hindu traditions.",
+                "Describe the manifestations of the Supreme Being across the Hindu faith traditions.",
+                "Relate the concept of Paramatma to personal spiritual growth.",
+                "Appreciate the unity of humanity through the understanding of the Supreme Being."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # SCRIPTURES
+    # ======================================================
+
+    "Scriptures": {
+
+        "Sacred Texts": {
+
+            "Study of Scriptures": [
+                "Identify the major Hindu scriptures including the Vedas, Upanishads, Bhagavad Gita and other sacred texts.",
+                "Explain the significance of scriptures in guiding moral and spiritual life.",
+                "Interpret selected teachings from Hindu scriptures.",
+                "Apply scriptural teachings to everyday life."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # PRINCIPLES OF DHARMA
+    # ======================================================
+
+    "Principles of Dharma": {
+
+        "Dharmic Values": {
+
+            "Ethical Living": [
+                "Explain the meaning and importance of Dharma.",
+                "Apply Dharmic principles in personal and community life.",
+                "Demonstrate virtues such as truthfulness, compassion, self-discipline and non-violence.",
+                "Promote responsible decision-making guided by Dharma."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # CULTURAL PRACTICES
+    # ======================================================
+
+    "Cultural Practices": {
+
+        "Religious and Cultural Life": {
+
+            "Hindu Traditions": [
+                "Explain the significance of major Hindu festivals and celebrations.",
+                "Describe Hindu rites, rituals and places of worship.",
+                "Demonstrate respect for religious diversity and cultural heritage.",
+                "Appreciate the role of cultural practices in strengthening community identity."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # MORAL VALUES
+    # ======================================================
+
+    "Moral Values": {
+
+        "Character Formation": {
+
+            "Ethical Behaviour": [
+                "Demonstrate honesty, humility, respect and responsibility.",
+                "Apply Hindu teachings when making ethical decisions.",
+                "Promote peaceful coexistence in school and society.",
+                "Develop self-discipline through moral living."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # LEADERSHIP AND SERVICE
+    # ======================================================
+
+    "Leadership and Service": {
+
+        "Responsible Citizenship": {
+
+            "Community Service": [
+                "Explain the importance of selfless service (Seva).",
+                "Participate in community service activities responsibly.",
+                "Demonstrate leadership guided by Hindu values.",
+                "Promote social harmony through responsible citizenship."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # CONTEMPORARY ISSUES
+    # ======================================================
+
+    "Contemporary Issues": {
+
+        "Faith and Society": {
+
+            "Modern Challenges": [
+                "Analyze contemporary social issues from a Hindu perspective.",
+                "Apply Hindu teachings in addressing environmental and social challenges.",
+                "Promote responsible use of technology and media.",
+                "Demonstrate ethical conduct in modern society."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # RESEARCH PROJECT
+    # ======================================================
+
+    "Research Project": {
+
+        "Religious Inquiry": {
+
+            "Applied Research": [
+                "Investigate a religious, cultural or ethical issue within the local community.",
+                "Collect and analyze information using appropriate research methods.",
+                "Develop practical recommendations based on Hindu teachings.",
+                "Present research findings using effective oral and written communication."
+            ]
+        }
+
+    }
+
+},  
+},
+
+        "Community Service Learning": {
+
+    # ======================================================
+    # CITIZENSHIP
+    # ======================================================
+
+    "Citizenship": {
+
+        "Responsible Citizenship": {
+
+            "Civic Responsibility": [
+                "Demonstrate responsible citizenship at the family, school and community levels.",
+                "Promote national values, patriotism and social responsibility.",
+                "Respect diversity and appreciate different cultures within the community.",
+                "Participate actively in community development initiatives."
+            ]
+        },
+
+        "Community Participation": {
+
+            "Civic Engagement": [
+                "Identify community needs requiring collective action.",
+                "Participate effectively in community service activities.",
+                "Collaborate with community members to solve local challenges.",
+                "Reflect on the importance of volunteerism and service."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # LIFE SKILLS
+    # ======================================================
+
+    "Life Skills": {
+
+        "Personal Development": {
+
+            "Self-Management": [
+                "Demonstrate self-awareness and emotional intelligence.",
+                "Apply effective communication and interpersonal skills.",
+                "Make responsible decisions in everyday situations.",
+                "Demonstrate resilience and adaptability when facing challenges."
+            ]
+        },
+
+        "Financial Literacy": {
+
+            "Resource Management": [
+                "Prepare simple personal budgets.",
+                "Apply prudent financial management practices.",
+                "Demonstrate responsible use of available resources.",
+                "Appreciate saving and responsible spending."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # ACTION RESEARCH
+    # ======================================================
+
+    "Action Research": {
+
+        "Community Investigation": {
+
+            "Research Skills": [
+                "Identify a community issue requiring investigation.",
+                "Collect information using appropriate research methods.",
+                "Analyze research findings to identify practical solutions.",
+                "Present research findings using appropriate communication methods."
+            ]
+        },
+
+        "Problem Solving": {
+
+            "Community Solutions": [
+                "Develop practical solutions to community challenges.",
+                "Implement simple community improvement initiatives.",
+                "Evaluate the effectiveness of implemented solutions.",
+                "Reflect on lessons learned from community engagement."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # SOCIAL ENTREPRENEURSHIP
+    # ======================================================
+
+    "Social Entrepreneurship": {
+
+        "Community Innovation": {
+
+            "Social Enterprise": [
+                "Identify opportunities for social entrepreneurship within the community.",
+                "Develop innovative ideas that address community needs.",
+                "Prepare simple social enterprise plans.",
+                "Promote ethical and sustainable business practices."
+            ]
+        },
+
+        "Project Management": {
+
+            "Enterprise Development": [
+                "Plan and organize community service projects effectively.",
+                "Mobilize available resources responsibly.",
+                "Work collaboratively to achieve project goals.",
+                "Evaluate the social impact of community projects."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # COMMUNITY SERVICE PROJECT
+    # ======================================================
+
+    "Community Service Project": {
+
+        "Integrated Community Project": {
+
+            "Service Learning": [
+                "Identify a real community challenge through consultation with stakeholders.",
+                "Plan and implement a community service project collaboratively.",
+                "Monitor and evaluate the project's outcomes and impact.",
+                "Prepare and present a reflective report demonstrating knowledge, skills, values and lessons learned."
+            ]
+        }
+
+    }
+
+},
+
+        "Arts and Sports": {
+
+    # ======================================================
+    # VISUAL ARTS
+    # ======================================================
+
+    "Visual Arts": {
+
+        "Creative Expression": {
+
+            "Art and Design": [
+                "Apply the elements and principles of art in creative work.",
+                "Produce original drawings, paintings and mixed-media artworks.",
+                "Use a variety of art materials, tools and techniques safely.",
+                "Evaluate artworks using appropriate artistic vocabulary."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # MUSIC
+    # ======================================================
+
+    "Music": {
+
+        "Music Performance": {
+
+            "Practical Music": [
+                "Perform vocal and instrumental music confidently.",
+                "Read and interpret basic music notation.",
+                "Compose simple musical pieces using appropriate techniques.",
+                "Appreciate Kenyan and world musical traditions."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # DANCE
+    # ======================================================
+
+    "Dance": {
+
+        "Movement and Performance": {
+
+            "Dance Skills": [
+                "Perform traditional and contemporary dance routines.",
+                "Apply rhythm, movement and coordination effectively.",
+                "Develop choreography for individual and group performances.",
+                "Appreciate dance as cultural and artistic expression."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # THEATRE AND FILM
+    # ======================================================
+
+    "Theatre and Film": {
+
+        "Drama and Production": {
+
+            "Performance Arts": [
+                "Develop scripts for stage and screen productions.",
+                "Perform dramatic roles using appropriate acting techniques.",
+                "Apply basic film production and stage management skills.",
+                "Evaluate theatrical and film performances critically."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # SPORTS AND RECREATION
+    # ======================================================
+
+    "Sports and Recreation": {
+
+        "Sports Performance": {
+
+            "Games and Athletics": [
+                "Demonstrate technical skills in selected sports and athletics.",
+                "Apply official rules and regulations during competitions.",
+                "Develop teamwork, leadership and sportsmanship.",
+                "Evaluate personal and team performance."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # PHYSICAL FITNESS
+    # ======================================================
+
+    "Physical Fitness": {
+
+        "Health and Fitness": {
+
+            "Fitness Development": [
+                "Develop and maintain personal fitness programmes.",
+                "Apply principles of exercise and conditioning.",
+                "Monitor personal fitness using appropriate assessment methods.",
+                "Promote healthy lifestyles through regular physical activity."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # SAFETY AND WELLNESS
+    # ======================================================
+
+    "Safety and Wellness": {
+
+        "Sports Safety": {
+
+            "Health Protection": [
+                "Apply safety procedures during sports and artistic activities.",
+                "Demonstrate basic first aid for sports-related injuries.",
+                "Promote mental health and emotional well-being.",
+                "Practice responsible use of sports and performance equipment."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # ENTREPRENEURSHIP
+    # ======================================================
+
+    "Creative and Sports Entrepreneurship": {
+
+        "Career Development": {
+
+            "Enterprise Skills": [
+                "Identify career opportunities in creative arts and sports.",
+                "Develop simple business ideas related to arts and sports industries.",
+                "Apply marketing skills to creative products and sporting events.",
+                "Demonstrate professionalism and ethical conduct."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # DIGITAL CREATIVITY
+    # ======================================================
+
+    "Digital Creativity": {
+
+        "Creative Technology": {
+
+            "Digital Production": [
+                "Use digital tools to create artistic and multimedia content.",
+                "Apply basic photography, audio and video editing techniques.",
+                "Develop digital portfolios of creative work.",
+                "Practice responsible use of digital technologies."
+            ]
+        }
+
+    },
+
+    # ======================================================
+    # RESEARCH PROJECT
+    # ======================================================
+
+    "Research Project": {
+
+        "Creative Innovation": {
+
+            "Arts and Sports Project": [
+                "Identify a challenge or opportunity in arts or sports.",
+                "Conduct research using appropriate methods.",
+                "Design and implement a creative or sports-based solution.",
+                "Present the project using exhibitions, performances or demonstrations."
+            ]
+        }
+
+    }
+
+},
+
+        "Technical Engineering Studies": {
 
     "Electrical Engineering": {
 
