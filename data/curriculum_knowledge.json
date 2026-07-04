@@ -1,0 +1,23 @@
+{
+  "Mathematics": {
+    "Whole Numbers": {
+      "Place Value": {
+        "definition": "Place value is the value of each digit in a number based on its position...",
+        "learning_objectives": ["..."],
+        "worked_examples": ["..."],
+        
+        "flashcard_deck": [
+          {"front": "What is Place Value?", "back": "The value of a digit based on its position in a number (e.g., Tens, Hundreds)."},
+          {"front": "What is the difference between Place Value and Total Value?", "back": "Place Value is the position (e.g., Thousands). Total Value is the actual worth of the digit in that position (e.g., 8,000)."},
+          {"front": "What do we look at when rounding off to the nearest hundred?", "back": "We check the digit in the tens place. If it is 5 or more, we round up. If it is less than 5, we round down."}
+        ],
+        "study_plan_milestones": {
+          "Week 1": "Master reading and writing numbers up to 1,000,000 using local Kenyan population datasets.",
+          "Week 2": "Identify Place Value and Total Value of any digit up to millions without confusion.",
+          "Week 3": "Practice rounding off large figures using realistic M-Pesa statements and transaction records.",
+          "Week 4": "Take the Mwalimu Grand Review Challenge using past KPSEA/KNEC questions."
+        }
+      }
+    }
+  }
+}

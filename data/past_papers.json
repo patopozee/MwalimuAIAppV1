@@ -1,0 +1,16 @@
+{
+  "Mathematics": {
+    "Whole Numbers": [
+      {
+        "source": "KCPE / KPSEA Baseline Mock",
+        "context": "A community project raised 234,567 shillings from residents. How many thousands of shillings were raised?",
+        "correct_calculation": "Identify the thousands place value. The digit is 4, indicating 234 thousands. The answer is 234,000 or 234 thousands."
+      },
+      {
+        "source": "KNEC Grade 6 Exemplar",
+        "context": "Matatu A carried 12,345 passengers in a month, while Matatu B carried 12,354 passengers. How many more passengers did Matatu B carry than Matatu A?",
+        "correct_calculation": "Perform subtraction of whole numbers: 12,354 minus 12,345 equals 9 passengers."
+      }
+    ]
+  }
+}
