@@ -42,7 +42,12 @@ def render_voice_tutor_page(client):
         stop_prompt="🛑 Stop & Send",
         key=f"voice_recorder_v_{st.session_state.voice_recorder_version}"  
     )
-    st.success("✅ Audio recorded successfully!")
+    if st.session_state.get("audio_success", False):
+        st.success("✅ Audio recorded successfully!")
+        del st.session_state["audio_success"]
+    else:
+        st.session_state["audio_success"] = True
+        st.rerun()
 
     # State flag to keep track of errors across the runtime flow
     has_error = False
