@@ -45,9 +45,7 @@ def render_voice_tutor_page(client):
     if st.session_state.get("audio_success", False):
         st.success("✅ Audio recorded successfully!")
         del st.session_state["audio_success"]
-    else:
-        st.session_state["audio_success"] = True
-        st.rerun()
+    
 
     # State flag to keep track of errors across the runtime flow
     has_error = False
