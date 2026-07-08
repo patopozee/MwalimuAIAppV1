@@ -3,13 +3,9 @@ import os
 import io
 import base64
 import requests
-import streamlit as st
 
 # Grab your OpenRouter key from the environment
-OPENROUTER_API_KEY = (
-    os.environ.get("OPENROUTER_API_KEY")
-    or st.secrets.get("OPENROUTER_API_KEY")
-)
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 
 def speech_to_text(audio_bytes):
     """
