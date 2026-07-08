@@ -42,7 +42,6 @@ def render_voice_tutor_page(client):
         stop_prompt="🛑 Stop & Send",
         key=f"voice_recorder_v_{st.session_state.voice_recorder_version}"  
     )
-    st.write(audio)
 
     # State flag to keep track of errors across the runtime flow
     has_error = False
