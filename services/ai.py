@@ -15,7 +15,7 @@ api_key = os.environ.get("OPENROUTER_API_KEY") or st.secrets.get("OPENROUTER_API
 # 3. Initialize unified OpenRouter gateway client safely
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key=api_key if api_key else "MOCK_KEY"
+    api_key=api_key if api_key else os.environ.get("OPENROUTER_API_KEY_FALLBACK", "")
 )
 
 def ask_mwalimu(question, student, messages, adaptive_context=""):
